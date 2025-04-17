@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Alunos Aprovados</title>
+</head>
+<body>
+  <h1>Alunos com média maior ou igual a 7</h1>
+  <div id="resultado"></div>
+  <script src="exerciciojson.js"></script>
+
+  <script>
+    const alunos = [
+      { nome: "Maria Joaquinha", notas: [8, 7.5, 9], curso: "Sistemas para Internet" },
+      { nome: "João Ricardo", notas: [8, 8.5, 5], curso: "Direito" },
+      { nome: "José Henrique", notas: [4, 10, 7], curso: "Administração" },
+      { nome: "Pedro da Silva", notas: [6, 7.6, 7.5], curso: "Sistemas para Internet" },
+      { nome: "Silvana Morais", notas: [6, 7.5, 9.5], curso: "Sistemas de Informação" },
+      { nome: "Patricia Castro", notas: [1, 9, 10], curso: "Arquitetura" },
+      { nome: "Joana Ribeiro", notas: [8, 9, 9], curso: "Contabilidade" },
+      { nome: "Rafael Rocha", notas: [4, 4, 9], curso: "Sistemas para Internet" },
+      { nome: "Gustavo Henrique", notas: [8, 7.5, 5], curso: "Sistemas para Internet" }
+    ];
+
+    function exibirAprovados(listaAlunos) {
+      const divResultado = document.getElementById("resultado");
+
+      listaAlunos.forEach(aluno => {
+        const media = aluno.notas.reduce((acc, nota) => acc + nota, 0) / aluno.notas.length;
+
+        if (media >= 7) {
+          const info = `
+            <p><strong>Nome:</strong> ${aluno.nome}<br>
+            <strong>Média:</strong> ${media.toFixed(2)}<br>
+            <strong>Curso:</strong> ${aluno.curso}</p>
+            <hr>
+          `;
+          divResultado.innerHTML += info;
+        }
+      });
+    }
+
+    exibirAprovados(alunos);
+  </script>
+</body>
+</html>
