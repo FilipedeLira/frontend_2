@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxo - Mensagens</title>
+    <link rel="shortcut icon" href="images/barco2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/default.css" />
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+      <header>
+        <div id="title">
+          <img src="images/barco1.png" alt="ícone de barco" />
+          <div class="headtitle">
+            <h1>Luxo</h1>
+            <h2>Aluguel de iates</h2>
+          </div>
+        </div>
+
+        <nav>
+          <ul class="navmenu">
+            <li><a href="index.html">Página inicial</a></li>
+            <li><a href="aluguel.html">Aluguel de iates</a></li>
+            <li><a href="destinos.html">Destinos</a></li>
+            <li><a href="tripulacao.html">Tripulação</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="admin.html">Admin</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <div class="pagtitle">
+          <div class="bgtitle"></div>
+          <h2>Mensagens Recebidas</h2>
+        </div>
+
+        <div id="tabela-mensagens">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Mensagem</th>
+              </tr>
+            </thead>
+            <tbody id="corpo-tabela">
+              <!-- Linhas das mensagens serão inseridas aqui dinamicamente -->
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2023 por Luxo aluguel de iates</p>
+    </footer>
+
+    <script src="js/jquery-3.6.4.min.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+      $(document).ready(function () {
+        var mensagens = obterMensagens();
+
+        if (mensagens.length === 0) {
+          $('#corpo-tabela').append('<tr><td colspan="3">Nenhuma mensagem encontrada.</td></tr>');
+        } else {
+          mensagens.forEach(function (msg) {
+            var linha = `
+              <tr>
+                <td>${msg.nome}</td>
+                <td>${msg.email}</td>
+                <td>${msg.mensagem}</td>
+              </tr>
+            `;
+            $('#corpo-tabela').append(linha);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
